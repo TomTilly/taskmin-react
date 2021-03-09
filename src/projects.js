@@ -10,7 +10,7 @@ export const PROJECTS = [
         id: uuid(),
         label: 'Book concert hall',
         isComplete: false,
-        subItems: []
+        subItems: [],
       },
       {
         id: uuid(),
@@ -25,7 +25,7 @@ export const PROJECTS = [
           {
             id: uuid(),
             label: 'Slow and somber',
-            isComplete: false
+            isComplete: false,
           },
           {
             id: uuid(),
@@ -36,16 +36,16 @@ export const PROJECTS = [
             id: uuid(),
             label: 'Closer',
             isComplete: false,
-          }
-        ]
+          },
+        ],
       },
       {
         id: uuid(),
         label: 'Learn pieces',
         isComplete: false,
-        subItems: []
-      }
-    ]
+        subItems: [],
+      },
+    ],
   },
   {
     id: uuid(),
@@ -56,17 +56,17 @@ export const PROJECTS = [
         id: uuid(),
         label: 'Choose dish',
         isComplete: true,
-        subItems: []
+        subItems: [],
       },
       {
         id: uuid(),
         label: 'Shop for ingredients',
         isComplete: false,
-        subItems: []
+        subItems: [],
       },
       {
         id: uuid(),
-        label: 'Get friend\'s availability',
+        label: "Get friend's availability",
         isComplete: true,
         subItems: [
           {
@@ -77,7 +77,7 @@ export const PROJECTS = [
           {
             id: uuid(),
             label: 'Greg',
-            isComplete: true
+            isComplete: true,
           },
           {
             id: uuid(),
@@ -88,16 +88,16 @@ export const PROJECTS = [
             id: uuid(),
             label: 'Chip',
             isComplete: true,
-          }
-        ]
+          },
+        ],
       },
       {
         id: uuid(),
         label: 'Clean apartment',
         isComplete: false,
-        subItems: []
+        subItems: [],
       },
-    ]
+    ],
   },
   {
     id: uuid(),
@@ -108,19 +108,19 @@ export const PROJECTS = [
         id: uuid(),
         label: 'Choose type of wood',
         isComplete: true,
-        subItems: []
+        subItems: [],
       },
       {
         id: uuid(),
         label: 'Look up blueprint',
         isComplete: false,
-        subItems: []
+        subItems: [],
       },
       {
         id: uuid(),
         label: 'Choose wood finish',
         isComplete: true,
-        subItems: []
+        subItems: [],
       },
       {
         id: uuid(),
@@ -135,16 +135,16 @@ export const PROJECTS = [
           {
             id: uuid(),
             label: 'Finish',
-            isComplete: false
+            isComplete: false,
           },
           {
             id: uuid(),
             label: 'Screws',
             isComplete: false,
-          }
-        ]
+          },
+        ],
       },
-    ]
+    ],
   },
   {
     id: uuid(),
@@ -155,43 +155,43 @@ export const PROJECTS = [
         id: uuid(),
         label: 'Get supplies',
         isComplete: false,
-        subItems: []
+        subItems: [],
       },
       {
         id: uuid(),
         label: 'Sketch layout on paper',
         isComplete: true,
-        subItems: []
+        subItems: [],
       },
       {
         id: uuid(),
-        label: 'Grandma\'s chocolate chip cookies',
+        label: "Grandma's chocolate chip cookies",
         isComplete: false,
         subItems: [
           {
             id: uuid(),
-            label: 'Grandma\'s chocolate chip cookie',
+            label: "Grandma's chocolate chip cookie",
             isComplete: false,
           },
           {
             id: uuid(),
-            label: 'Dad\'s chili',
-            isComplete: false
+            label: "Dad's chili",
+            isComplete: false,
           },
           {
             id: uuid(),
-            label: 'Mom\'s mac and cheese',
+            label: "Mom's mac and cheese",
             isComplete: true,
-          }
-        ]
+          },
+        ],
       },
       {
         id: uuid(),
         label: 'Format recipes',
         isComplete: false,
-        subItems: []
+        subItems: [],
       },
-    ]
+    ],
   },
   {
     id: uuid(),
@@ -202,20 +202,20 @@ export const PROJECTS = [
         id: uuid(),
         label: 'Find teacher',
         isComplete: false,
-        subItems: []
+        subItems: [],
       },
       {
         id: uuid(),
         label: 'Start taking lessons',
         isComplete: false,
-        subItems: []
+        subItems: [],
       },
       {
         id: uuid(),
         label: 'Buy fiddle',
         isComplete: true,
-        subItems: []
+        subItems: [],
       },
-    ]
+    ],
   },
 ];
