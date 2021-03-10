@@ -1,5 +1,6 @@
 import React from 'react';
 import ProjectLineItem from './ProjectLineItem';
+import '../styles/ProjectsSidebar.css';
 
 function ProjectsSidebar({ projects }) {
   return (

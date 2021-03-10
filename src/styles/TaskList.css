@@ -1,0 +1,11 @@
+.TaskList {
+  max-width: 798px;
+  min-width: 300px;
+  margin-left: 400px;
+  padding: 2rem 75px 0;
+  min-height: 100vh;
+}
+
+.TaskList__ul {
+  margin: 0;
+}

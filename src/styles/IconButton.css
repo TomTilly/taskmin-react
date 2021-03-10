@@ -1,0 +1,26 @@
+.IconButton {
+  border: 0;
+  padding: 0.3em;
+  background: none;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.1s linear;
+}
+
+.IconButton:hover,
+.IconButton:focus {
+  transform: scale(1.05);
+}
+
+.IconButton:focus {
+  outline: none;
+}
+
+.IconButton:active {
+  transform: scale(1.1);
+}
+
+.IconButton > * {
+  width: 1.1em;
+  height: auto;
+}

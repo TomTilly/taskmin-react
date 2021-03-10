@@ -1,0 +1,35 @@
+.ProjectLineItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-gap: 0.75em;
+  align-items: center;
+  padding: 1em 2rem;
+}
+
+.ProjectLineItem:hover {
+  background-color: #dad9e2;
+  cursor: pointer;
+}
+
+.ProjectLineItem::before {
+  content: '';
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 50%;
+}
+
+.ProjectLineItem[data-color='red']::before {
+  background-color: var(--red);
+}
+.ProjectLineItem[data-color='yellow']::before {
+  background-color: var(--yellow);
+}
+.ProjectLineItem[data-color='green']::before {
+  background-color: var(--green);
+}
+.ProjectLineItem[data-color='blue']::before {
+  background-color: var(--blue);
+}
+.ProjectLineItem[data-color='orange']::before {
+  background-color: var(--orange);
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import TaskListItem from './TaskListItem';
+import '../styles/TaskList.css';
 
 function TaskList({ project }) {
   const constructListItem = (task) => {

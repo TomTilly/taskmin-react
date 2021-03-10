@@ -1,0 +1,19 @@
+.ProjectsSidebar {
+  background-color: #e7e6eb;
+  position: fixed;
+  width: 450px;
+  min-height: 100vh;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+
+.ProjectsSidebar__title {
+  padding: 2rem 2rem 0;
+}
+
+.ProjectsSidebar__project-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
