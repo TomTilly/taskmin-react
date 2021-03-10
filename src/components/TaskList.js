@@ -7,29 +7,37 @@ function TaskList({ project }) {
     if (task.subItems) {
       if (task.subItems.length) {
         return (
-          <TaskListItem isComplete={task.isComplete} key={task.id}>
-            {task.label}
-            <ul className="TaskLineItem__SubList">
+          <TaskListItem
+            isComplete={task.isComplete}
+            key={task.id}
+            label={task.label}
+          >
+            <ul className="TaskLineItem__subList">
               {task.subItems.map(constructListItem)}
             </ul>
           </TaskListItem>
         );
       }
       return (
-        <TaskListItem isComplete={task.isComplete} key={task.id}>
-          {task.label}
-        </TaskListItem>
+        <TaskListItem
+          isComplete={task.isComplete}
+          key={task.id}
+          label={task.label}
+        />
       );
     }
     return (
-      <TaskListItem isNested isComplete={task.isComplete} key={task.id}>
-        {task.label}
-      </TaskListItem>
+      <TaskListItem
+        isNested
+        isComplete={task.isComplete}
+        key={task.id}
+        label={task.label}
+      />
     );
   };
   return (
     <section className="TaskList">
-      <h1>{project.title}</h1>
+      <h1 className="TaskList__title">{project.title}</h1>
       <ul className="TaskList__ul">{project.tasks.map(constructListItem)}</ul>
     </section>
   );

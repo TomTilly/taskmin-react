@@ -1,11 +1,32 @@
 .TaskList {
   max-width: 798px;
   min-width: 300px;
-  margin-left: 400px;
-  padding: 2rem 75px 0;
   min-height: 100vh;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: #f4f4f4;
+}
+
+@media (min-width: 600px) {
+  .TaskList {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin-left: var(--left-col-width-md);
+  }
+}
+
+@media (min-width: 900px) {
+  .TaskList {
+    margin-left: var(--left-col-width-lg);
+    padding-left: 5rem;
+  }
+}
+
+.TaskList__title {
+  line-height: 1;
 }
 
 .TaskList__ul {
+  padding: 0;
   margin: 0;
 }

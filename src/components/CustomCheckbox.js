@@ -3,7 +3,7 @@
 import React from 'react';
 import '../styles/CustomCheckbox.css';
 
-function CustomCheckbox(props) {
+function CustomCheckbox({ label }) {
   return (
     <label className="CustomCheckbox">
       <span className="CustomCheckbox__input">
@@ -14,6 +14,7 @@ function CustomCheckbox(props) {
             viewBox="0 0 24 24"
             aria-hidden="true"
             focusable="false"
+            className="CustomCheckbox__checkmark"
           >
             <path
               fill="none"
@@ -24,7 +25,7 @@ function CustomCheckbox(props) {
           </svg>
         </span>
       </span>
-      <span className="CustomCheckbox__label">Checkbox</span>
+      <span className="CustomCheckbox__label">{label}</span>
     </label>
   );
 }

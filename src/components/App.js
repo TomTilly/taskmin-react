@@ -5,11 +5,17 @@ import '../styles/App.css';
 import { PROJECTS } from '../projects';
 
 function App() {
-  const [projects, updateProjects] = useState(PROJECTS);
+  const [projects, setProjects] = useState(PROJECTS);
+  const [activeProjectId, setActiveProjectId] = useState(projects[0].id);
+
   return (
     <main className="App">
-      <ProjectsSidebar projects={projects} />
-      <TaskList project={projects[3]} />
+      <ProjectsSidebar
+        projects={projects}
+        activeProject={activeProjectId}
+        setActiveProjectId={setActiveProjectId}
+      />
+      <TaskList project={projects.find((p) => p.id === activeProjectId)} />
     </main>
   );
 }

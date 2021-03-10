@@ -1,15 +1,28 @@
 .ProjectsSidebar {
   background-color: #e7e6eb;
   position: fixed;
-  width: 450px;
+  width: 100%;
   min-height: 100vh;
   top: 0;
   bottom: 0;
   overflow-y: auto;
 }
 
+@media (min-width: 750px) {
+  .ProjectsSidebar {
+    width: var(--left-col-width-md);
+  }
+}
+
+@media (min-width: 900px) {
+  .ProjectsSidebar {
+    width: var(--left-col-width-lg);
+  }
+}
+
 .ProjectsSidebar__title {
   padding: 2rem 2rem 0;
+  line-height: 1;
 }
 
 .ProjectsSidebar__project-list {

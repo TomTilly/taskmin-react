@@ -1,0 +1,10 @@
+.TaskLineItem {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 2rem;
+  border-bottom: 1px dashed #cfcfcf;
+}
+
+.TaskLineItem__subList {
+  grid-column: 1 / -1;
+}

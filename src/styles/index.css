@@ -5,11 +5,20 @@
   --green: #44ab96;
   --blue: #4484ab;
   --orange: #da774a;
+  --left-col-width-lg: 400px;
+  --left-col-width-md: 300px;
+  --left-col-width: 100%;
 }
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%;
+  font-size: 55%;
+}
+
+@media (min-width: 500px) {
+  html {
+    font-size: 62.5%;
+  }
 }
 
 *,
@@ -51,5 +60,9 @@ p {
 }
 
 h1 {
+  font-size: 3.6rem;
+}
+
+h2 {
   font-size: 2.4rem;
 }
