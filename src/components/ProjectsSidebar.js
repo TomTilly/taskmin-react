@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectLineItem from './ProjectLineItem';
+import ProjectListItem from './ProjectListItem';
 import '../styles/ProjectsSidebar.css';
 
 function ProjectsSidebar({ projects, activeProject, setActiveProjectId }) {
@@ -8,7 +8,7 @@ function ProjectsSidebar({ projects, activeProject, setActiveProjectId }) {
       <h2 className="ProjectsSidebar__title">My Projects</h2>
       <ul className="ProjectsSidebar__project-list">
         {projects.map((project) => (
-          <ProjectLineItem
+          <ProjectListItem
             key={project.id}
             id={project.id}
             color={project.color}
@@ -16,7 +16,7 @@ function ProjectsSidebar({ projects, activeProject, setActiveProjectId }) {
             setActiveProjectId={setActiveProjectId}
           >
             {project.title}
-          </ProjectLineItem>
+          </ProjectListItem>
         ))}
       </ul>
     </section>

@@ -1,0 +1,34 @@
+.TaskListItem {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: 2rem;
+  border-bottom: 1px dashed #cfcfcf;
+}
+
+.TaskListItem:hover {
+  background-color: #e5ecef;
+}
+
+.TaskListItem:hover .TaskListItem {
+  background-color: #d5e1e9;
+}
+
+.TaskListItem__subList {
+  grid-column: 1 / -1;
+  padding-left: 0;
+}
+
+.TaskListItem__subList .TaskListItem {
+  padding-left: 2rem;
+  border-bottom: none;
+  border-top: 1px dashed #cfcfcf;
+}
+
+.TaskListItem .LineItemButtons {
+  padding: 0.8em 0.8em 0.8em 0;
+  opacity: 0;
+}
+
+.TaskListItem:hover > .LineItemButtons {
+  opacity: 1;
+}

@@ -12,7 +12,7 @@ function TaskList({ project }) {
             key={task.id}
             label={task.label}
           >
-            <ul className="TaskLineItem__subList">
+            <ul className="TaskListItem__subList">
               {task.subItems.map(constructListItem)}
             </ul>
           </TaskListItem>

@@ -1,20 +1,20 @@
 import React from 'react';
 import LineItemButtons from './LineItemButtons';
-import '../styles/ProjectLineItem.css';
+import '../styles/ProjectListItem.css';
 
-function ProjectLineItem({
+function ProjectListItem({
   color,
   isActive,
   id,
   setActiveProjectId,
   children,
 }) {
-  let buttonClasses = 'ProjectLineItem__button';
+  let buttonClasses = 'ProjectListItem__button';
   if (isActive) {
-    buttonClasses += ' ProjectLineItem__button--active';
+    buttonClasses += ' ProjectListItem__button--active';
   }
   return (
-    <li className="ProjectLineItem">
+    <li className="ProjectListItem">
       <button
         className={buttonClasses}
         data-color={color}
@@ -31,4 +31,4 @@ function ProjectLineItem({
   );
 }
 
-export default ProjectLineItem;
+export default ProjectListItem;

@@ -4,6 +4,8 @@
   grid-gap: 0.5em;
   align-items: center;
   font-size: 1.8rem;
+  padding: 0.8em;
+  cursor: pointer;
 }
 
 .CustomCheckbox__input input {

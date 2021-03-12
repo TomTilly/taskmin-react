@@ -1,11 +1,11 @@
 import React from 'react';
 import CustomCheckbox from './CustomCheckbox';
 import LineItemButtons from './LineItemButtons';
-import '../styles/TaskLineItem.css';
+import '../styles/TaskListItem.css';
 
-function TaskLineItem({ isNested, children, isComplete, hasChildren, label }) {
+function TaskListItem({ isNested, children, isComplete, hasChildren, label }) {
   return (
-    <li className="TaskLineItem">
+    <li className="TaskListItem">
       <CustomCheckbox label={label} />
       <LineItemButtons edit remove move />
       {children}
@@ -13,4 +13,4 @@ function TaskLineItem({ isNested, children, isComplete, hasChildren, label }) {
   );
 }
 
-export default TaskLineItem;
+export default TaskListItem;
