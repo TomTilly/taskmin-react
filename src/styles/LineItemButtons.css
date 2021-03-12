@@ -1,0 +1,12 @@
+.TaskListItem .LineItemButtons {
+  padding: 0.8em 0.8em 0.8em 0;
+}
+
+.LineItemButtons > * {
+  opacity: 0;
+}
+
+:hover > .LineItemButtons > *,
+:focus > .LineItemButtons > * {
+  opacity: 1;
+}

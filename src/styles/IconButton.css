@@ -10,6 +10,7 @@
 .IconButton:hover,
 .IconButton:focus {
   transform: scale(1.05);
+  opacity: 1;
 }
 
 .IconButton:focus {

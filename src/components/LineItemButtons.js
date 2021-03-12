@@ -3,6 +3,7 @@ import { ReactComponent as Move } from 'bootstrap-icons/icons/arrows-move.svg';
 import { ReactComponent as Pencil } from 'bootstrap-icons/icons/pencil-fill.svg';
 import { ReactComponent as Trash } from 'bootstrap-icons/icons/trash.svg';
 import IconButton from './IconButton';
+import '../styles/LineItemButtons.css';
 
 function LineItemButtons({ move, edit, remove }) {
   let buttons;

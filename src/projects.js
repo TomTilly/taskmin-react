@@ -165,7 +165,7 @@ export const PROJECTS = [
       },
       {
         id: uuid(),
-        label: "Grandma's chocolate chip cookies",
+        label: 'Get family recipes',
         isComplete: false,
         subItems: [
           {
