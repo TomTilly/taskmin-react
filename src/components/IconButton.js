@@ -1,28 +1,33 @@
 import React from 'react';
 import '../styles/IconButton.css';
-import { lightenDarkenColor } from '../utilities';
 
 function IconButton({
   children,
   color,
   ariaLabel,
-  hasBackground,
+  background,
+  handleClick,
   size = 'md',
+  borderRadius,
+  isSubmit,
 }) {
   // Add styled components for darkening the background
   const styles = {
     color: color || 'currentColor',
+    background: background || 'initial',
+    borderRadius: borderRadius || '50%',
   };
-  let classes = `IconButton IconButton--${size}`;
-  if (hasBackground) {
-    classes += ' IconButton--hasBackground';
-  }
+  const classes = `IconButton IconButton--${size}`;
   return (
     <button
       className={classes}
-      type="button"
+      type={isSubmit ? 'submit' : 'button'}
       style={styles}
       aria-label={ariaLabel}
+      onClick={(e) => {
+        e.stopPropagation();
+        if (handleClick) handleClick();
+      }}
     >
       {children}
     </button>

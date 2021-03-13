@@ -9,6 +9,16 @@ function App() {
   const [activeProjectId, setActiveProjectId] = useState(projects[0].id);
   const [activePanel, setActivePanel] = useState('projects');
 
+  const updateProject = (updatedValue, id) => {
+    const newProjects = projects.map((project) => {
+      if (project.id === id) {
+        return { ...project, title: updatedValue };
+      }
+      return project;
+    });
+    setProjects(newProjects);
+  };
+
   return (
     <main className="App">
       <ProjectsSidebar
@@ -17,6 +27,7 @@ function App() {
         setActiveProjectId={setActiveProjectId}
         activePanel={activePanel}
         setActivePanel={setActivePanel}
+        updateProject={updateProject}
       />
       <TaskList
         project={projects.find((p) => p.id === activeProjectId)}

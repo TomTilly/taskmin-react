@@ -54,7 +54,7 @@ function TaskList({ project, setActivePanel }) {
         <IconButton
           ariaLabel="Add Task to List"
           color={themeColors.green}
-          hasBackground
+          background="#dddddd"
           size="lg"
         >
           <Plus />

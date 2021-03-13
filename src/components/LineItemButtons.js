@@ -12,7 +12,11 @@ function LineItemButtons({ move, edit, remove }) {
   return (
     <div className="LineItemButtons">
       {edit && (
-        <IconButton color={themeColors.green} ariaLabel="Edit project title">
+        <IconButton
+          color={themeColors.green}
+          ariaLabel="Edit project title"
+          handleClick={edit}
+        >
           <Pencil />
         </IconButton>
       )}

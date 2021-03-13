@@ -11,6 +11,7 @@ function ProjectsSidebar({
   setActiveProjectId,
   activePanel,
   setActivePanel,
+  updateProject,
 }) {
   let classes = 'ProjectsSidebar';
   if (activePanel === 'projects') {
@@ -23,7 +24,7 @@ function ProjectsSidebar({
         <IconButton
           ariaLabel="Add Task to List"
           color={themeColors.green}
-          hasBackground
+          background="#dddddd"
           size="lg"
         >
           <Plus />
@@ -38,6 +39,7 @@ function ProjectsSidebar({
             isActive={activeProject === project.id}
             setActiveProjectId={setActiveProjectId}
             setActivePanel={setActivePanel}
+            updateProject={updateProject}
           >
             {project.title}
           </ProjectListItem>

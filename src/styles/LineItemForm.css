@@ -1,0 +1,6 @@
+.LineItemForm {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  grid-column-gap: 0.3em;
+  padding: 2rem;
+}

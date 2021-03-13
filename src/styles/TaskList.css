@@ -35,6 +35,7 @@
   display: grid;
   grid-template-columns: 1fr auto;
   grid-row-gap: 2rem;
+  align-items: start;
   justify-items: start;
   margin-bottom: 1rem;
   padding: 0 2rem;
@@ -42,6 +43,10 @@
 }
 
 @media (min-width: 750px) {
+  .TaskList__header {
+    padding: 0;
+  }
+
   .TaskList__button {
     display: none;
   }
