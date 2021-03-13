@@ -2,6 +2,7 @@ import React from 'react';
 import { ReactComponent as Move } from 'bootstrap-icons/icons/arrows-move.svg';
 import { ReactComponent as Pencil } from 'bootstrap-icons/icons/pencil-fill.svg';
 import { ReactComponent as Trash } from 'bootstrap-icons/icons/trash.svg';
+import { themeColors } from '../utilities';
 import IconButton from './IconButton';
 import '../styles/LineItemButtons.css';
 
@@ -11,17 +12,17 @@ function LineItemButtons({ move, edit, remove }) {
   return (
     <div className="LineItemButtons">
       {edit && (
-        <IconButton color="#44AB96" ariaLabel="Edit project title">
+        <IconButton color={themeColors.green} ariaLabel="Edit project title">
           <Pencil />
         </IconButton>
       )}
       {move && (
-        <IconButton color="#4484AB" ariaLabel="Move project">
+        <IconButton color={themeColors.blue} ariaLabel="Move project">
           <Move />
         </IconButton>
       )}
       {remove && (
-        <IconButton color="#E53855" ariaLabel="Delete project">
+        <IconButton color={themeColors.red} ariaLabel="Delete project">
           <Trash />
         </IconButton>
       )}

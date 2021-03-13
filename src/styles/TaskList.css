@@ -1,16 +1,26 @@
 .TaskList {
   min-width: 300px;
-  min-height: 100vh;
+  height: 100vh;
   padding-top: 2rem;
   padding-bottom: 2rem;
   background-color: #f4f4f4;
+  margin-left: 0;
+  overflow: auto;
 }
 
-@media (min-width: 600px) {
+.ProjectsSidebar--active + .TaskList {
+  overflow: hidden;
+}
+
+@media (min-width: 750px) {
   .TaskList {
     padding-left: 3rem;
     padding-right: 3rem;
     margin-left: var(--left-col-width-md);
+  }
+
+  .ProjectsSidebar--active .TaskList {
+    overflow: auto;
   }
 }
 
@@ -21,8 +31,28 @@
   }
 }
 
+.TaskList__header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-row-gap: 2rem;
+  justify-items: start;
+  margin-bottom: 1rem;
+  padding: 0 2rem;
+  max-width: 798px;
+}
+
+@media (min-width: 750px) {
+  .TaskList__button {
+    display: none;
+  }
+}
+.TaskList__button {
+  grid-column: 1 / -1;
+}
+
 .TaskList__title {
   line-height: 1;
+  margin: 0;
 }
 
 .TaskList__ul {

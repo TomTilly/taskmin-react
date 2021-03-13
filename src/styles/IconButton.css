@@ -5,6 +5,10 @@
   line-height: 1;
   cursor: pointer;
   transition: transform 0.1s linear;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .IconButton:hover,
@@ -22,6 +26,25 @@
 }
 
 .IconButton > * {
-  width: 1.1em;
   height: auto;
+}
+
+.IconButton--sm > * {
+  width: 0.5em;
+}
+
+.IconButton--md > * {
+  width: 1em;
+}
+
+.IconButton--lg > * {
+  width: 1.5em;
+}
+
+.IconButton--hasBackground {
+  background: #dddddd;
+}
+
+.IconButton--hasBackground:hover {
+  background: #cccccc;
 }

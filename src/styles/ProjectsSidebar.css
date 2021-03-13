@@ -6,10 +6,20 @@
   top: 0;
   bottom: 0;
   overflow-y: auto;
+  z-index: 1;
+  /* opacity: 0; */
+  transition: transform 0.2s ease-in-out;
+  transform: translate(-100%);
+}
+
+.ProjectsSidebar--active {
+  transform: translate(0);
 }
 
 @media (min-width: 750px) {
   .ProjectsSidebar {
+    transform: translate(0);
+    transition: none;
     width: var(--left-col-width-md);
   }
 }
@@ -20,9 +30,17 @@
   }
 }
 
-.ProjectsSidebar__title {
+.ProjectsSidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 2rem 2rem 0;
+  margin-bottom: 1rem;
+}
+
+.ProjectsSidebar__title {
   line-height: 1;
+  margin: 0;
 }
 
 .ProjectsSidebar__project-list {

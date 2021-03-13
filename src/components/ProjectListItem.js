@@ -8,6 +8,7 @@ function ProjectListItem({
   id,
   setActiveProjectId,
   children,
+  setActivePanel,
 }) {
   let buttonClasses = 'ProjectListItem__button';
   if (isActive) {
@@ -19,6 +20,7 @@ function ProjectListItem({
         className={buttonClasses}
         data-color={color}
         onClick={(e) => {
+          setActivePanel('tasks');
           if (isActive) return;
           setActiveProjectId(id);
         }}
