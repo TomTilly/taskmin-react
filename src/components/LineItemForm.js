@@ -28,6 +28,7 @@ function LineItemForm({ name, onSubmit }) {
         borderRadius="5px"
         size="lg"
         isSubmit
+        className="LineItemForm__submitBtn"
       >
         <Checkmark />
       </IconButton>
@@ -36,6 +37,8 @@ function LineItemForm({ name, onSubmit }) {
         background={themeColors.red}
         borderRadius="5px"
         size="lg"
+        handleClick={() => onSubmit(name)}
+        className="LineItemForm__cancelBtn"
       >
         <X />
       </IconButton>

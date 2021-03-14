@@ -10,6 +10,7 @@ function IconButton({
   size = 'md',
   borderRadius,
   isSubmit,
+  className,
 }) {
   // Add styled components for darkening the background
   const styles = {
@@ -17,7 +18,10 @@ function IconButton({
     background: background || 'initial',
     borderRadius: borderRadius || '50%',
   };
-  const classes = `IconButton IconButton--${size}`;
+  let classes = `IconButton IconButton--${size}`;
+  if (className) {
+    classes += ` ${className}`;
+  }
   return (
     <button
       className={classes}
@@ -26,7 +30,7 @@ function IconButton({
       aria-label={ariaLabel}
       onClick={(e) => {
         e.stopPropagation();
-        if (handleClick) handleClick();
+        if (handleClick) handleClick(e);
       }}
     >
       {children}

@@ -1,6 +1,35 @@
 .LineItemForm {
   display: grid;
   grid-template-columns: 1fr auto auto;
-  grid-column-gap: 0.3em;
+  grid-gap: 0.5em;
   padding: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 600px) {
+  .LineItemForm {
+    grid-template-columns: 1fr auto;
+  }
+
+  .LineItemForm__input {
+    grid-row: span 2;
+  }
+}
+
+@media (min-width: 900px) {
+  .LineItemForm {
+    grid-template-columns: 1fr auto auto;
+  }
+
+  .LineItemForm__input {
+    grid-row: 1;
+  }
+}
+
+.LineItemForm__input {
+  background-color: #f3f3f3;
+  border: none;
+  padding: 0.75em;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #ccc;
 }
