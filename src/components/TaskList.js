@@ -47,6 +47,7 @@ function TaskList({ project, setActivePanel }) {
           onClick={(e) => {
             setActivePanel('projects');
           }}
+          background="#dddddd"
         >
           Back To Projects
         </Button>
