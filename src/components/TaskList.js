@@ -6,7 +6,7 @@ import IconButton from './IconButton';
 import Button from './Button';
 import { themeColors } from '../utilities';
 
-function TaskList({ project, setActivePanel }) {
+function TaskList({ project, setActivePanel, updateTask }) {
   const constructListItem = (task) => {
     if (task.subItems) {
       if (task.subItems.length) {
@@ -15,6 +15,9 @@ function TaskList({ project, setActivePanel }) {
             isComplete={task.isComplete}
             key={task.id}
             label={task.label}
+            taskId={task.id}
+            projectId={project.id}
+            updateTask={updateTask}
           >
             <ul className="TaskListItem__subList">
               {task.subItems.map(constructListItem)}
@@ -27,15 +30,22 @@ function TaskList({ project, setActivePanel }) {
           isComplete={task.isComplete}
           key={task.id}
           label={task.label}
+          taskId={task.id}
+          projectId={project.id}
+          updateTask={updateTask}
         />
       );
     }
+    // Subitems
     return (
       <TaskListItem
         isNested
         isComplete={task.isComplete}
         key={task.id}
         label={task.label}
+        taskId={task.id}
+        projectId={project.id}
+        updateTask={updateTask}
       />
     );
   };

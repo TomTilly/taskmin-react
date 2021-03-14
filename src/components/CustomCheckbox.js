@@ -1,13 +1,22 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
 import React from 'react';
+import useToggleState from '../hooks/useToggleState';
 import '../styles/CustomCheckbox.css';
 
-function CustomCheckbox({ label }) {
+function CustomCheckbox({ label, isComplete, updateTask, taskId, projectId }) {
+  console.log('render');
   return (
     <label className="CustomCheckbox">
       <span className="CustomCheckbox__input">
-        <input type="checkbox" name="checkbox" />
+        <input
+          type="checkbox"
+          name="checkbox"
+          checked={isComplete}
+          onChange={(e) => {
+            updateTask('isComplete', !isComplete, taskId, projectId);
+          }}
+        />
         <span className="CustomCheckbox__control">
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -19,6 +19,22 @@ function App() {
     setProjects(newProjects);
   };
 
+  const updateTask = (propToUpdate, newValue, taskId, projectId) => {
+    const newProjects = projects.map((project) => {
+      if (project.id === projectId) {
+        const newTasks = project.tasks.map((task) => {
+          if (task.id === taskId) {
+            return { ...task, [propToUpdate]: newValue };
+          }
+          return task;
+        });
+        return { ...project, tasks: newTasks };
+      }
+      return project;
+    });
+    setProjects(newProjects);
+  };
+
   return (
     <main className="App">
       <ProjectsSidebar
@@ -32,6 +48,7 @@ function App() {
       <TaskList
         project={projects.find((p) => p.id === activeProjectId)}
         setActivePanel={setActivePanel}
+        updateTask={updateTask}
       />
     </main>
   );
