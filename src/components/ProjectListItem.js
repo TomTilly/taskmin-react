@@ -12,6 +12,7 @@ function ProjectListItem({
   children,
   setActivePanel,
   updateProject,
+  removeProject,
 }) {
   const [isEditing, toggle] = useToggleState(false);
   let buttonClasses = 'ProjectListItem__button';
@@ -40,7 +41,11 @@ function ProjectListItem({
           type="button"
         >
           {children}
-          <LineItemButtons edit={toggle} move remove />
+          <LineItemButtons
+            edit={toggle}
+            move
+            remove={() => removeProject(id)}
+          />
         </button>
       )}
     </li>

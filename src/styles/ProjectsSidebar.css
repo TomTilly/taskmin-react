@@ -48,3 +48,8 @@
   margin: 0;
   list-style: none;
 }
+
+.ProjectsSidebar__empty-notification {
+  padding: 2rem;
+  font-style: italic;
+}

@@ -26,7 +26,11 @@ function LineItemButtons({ move, edit, remove }) {
         </IconButton>
       )}
       {remove && (
-        <IconButton color={themeColors.red} ariaLabel="Delete project">
+        <IconButton
+          color={themeColors.red}
+          ariaLabel="Delete project"
+          handleClick={remove}
+        >
           <Trash />
         </IconButton>
       )}

@@ -12,6 +12,7 @@ function ProjectsSidebar({
   activePanel,
   setActivePanel,
   updateProject,
+  removeProject,
 }) {
   let classes = 'ProjectsSidebar';
   if (activePanel === 'projects') {
@@ -30,21 +31,28 @@ function ProjectsSidebar({
           <Plus />
         </IconButton>
       </header>
-      <ul className="ProjectsSidebar__project-list">
-        {projects.map((project) => (
-          <ProjectListItem
-            key={project.id}
-            id={project.id}
-            color={project.color}
-            isActive={activeProject === project.id}
-            setActiveProjectId={setActiveProjectId}
-            setActivePanel={setActivePanel}
-            updateProject={updateProject}
-          >
-            {project.title}
-          </ProjectListItem>
-        ))}
-      </ul>
+      {projects.length ? (
+        <ul className="ProjectsSidebar__project-list">
+          {projects.map((project) => (
+            <ProjectListItem
+              key={project.id}
+              id={project.id}
+              color={project.color}
+              isActive={activeProject === project.id}
+              setActiveProjectId={setActiveProjectId}
+              setActivePanel={setActivePanel}
+              updateProject={updateProject}
+              removeProject={removeProject}
+            >
+              {project.title}
+            </ProjectListItem>
+          ))}
+        </ul>
+      ) : (
+        <p className="ProjectsSidebar__empty-notification">
+          No projects to show. Click on the "plus" icon above to create one!
+        </p>
+      )}
     </section>
   );
 }

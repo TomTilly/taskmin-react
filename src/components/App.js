@@ -7,7 +7,7 @@ import { SEED_DATA } from '../projects';
 
 function App() {
   const [projects, setProjects] = useState(SEED_DATA);
-  const [activeProjectId, setActiveProjectId] = useState(projects[0].id);
+  const [activeProjectId, setActiveProjectId] = useState(projects[0]?.id);
   const [activePanel, setActivePanel] = useState('projects');
 
   const updateProject = (propToUpdate, newValue, id) => {
@@ -18,6 +18,12 @@ function App() {
       return project;
     });
 
+    setProjects(newProjects);
+  };
+
+  const removeProject = (id) => {
+    const newProjects = projects.filter((project) => project.id !== id);
+    setActiveProjectId(null);
     setProjects(newProjects);
   };
 
@@ -82,6 +88,7 @@ function App() {
         activePanel={activePanel}
         setActivePanel={setActivePanel}
         updateProject={updateProject}
+        removeProject={removeProject}
       />
       <TaskList
         project={projects.find((p) => p.id === activeProjectId)}

@@ -55,19 +55,22 @@ function TaskList({ project, setActivePanel, updateTask, toggleComplete }) {
       />
     );
   };
-  return (
-    <section className="TaskList">
-      <header className="TaskList__header">
-        <Button
-          className="TaskList__button"
-          onClick={(e) => {
-            setActivePanel('projects');
-          }}
-          background="#dddddd"
-        >
-          Back To Projects
-        </Button>
-        <h1 className="TaskList__title">{project.title}</h1>
+
+  const header = (
+    <header className="TaskList__header">
+      <Button
+        className="TaskList__button"
+        onClick={(e) => {
+          setActivePanel('projects');
+        }}
+        background="#dddddd"
+      >
+        Back To Projects
+      </Button>
+      <h1 className="TaskList__title">
+        {project ? project.title : 'No project selected'}
+      </h1>
+      {project && (
         <IconButton
           ariaLabel="Add Task to List"
           color={themeColors.green}
@@ -76,8 +79,16 @@ function TaskList({ project, setActivePanel, updateTask, toggleComplete }) {
         >
           <Plus />
         </IconButton>
-      </header>
-      <ul className="TaskList__ul">{project.tasks.map(constructListItem)}</ul>
+      )}
+    </header>
+  );
+
+  return (
+    <section className="TaskList">
+      {header}
+      {project && (
+        <ul className="TaskList__ul">{project.tasks.map(constructListItem)}</ul>
+      )}
     </section>
   );
 }
