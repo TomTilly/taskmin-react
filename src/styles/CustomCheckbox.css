@@ -52,3 +52,9 @@
 .CustomCheckbox__input input:focus + .CustomCheckbox__control {
   box-shadow: 0 0 0 0.05em #fff, 0 0 0.15em 0.1em #b8b8b8;
 }
+
+.CustomCheckbox__label--complete {
+  font-style: italic;
+  color: #838383;
+  text-decoration: line-through;
+}

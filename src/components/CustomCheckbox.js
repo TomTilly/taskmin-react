@@ -12,6 +12,11 @@ function CustomCheckbox({
   taskId,
   parentTaskId,
 }) {
+  let labelClasses = 'CustomCheckbox__label';
+  if (isComplete) {
+    labelClasses += ' CustomCheckbox__label--complete';
+  }
+
   return (
     <label className="CustomCheckbox">
       <span className="CustomCheckbox__input">
@@ -40,7 +45,7 @@ function CustomCheckbox({
           </svg>
         </span>
       </span>
-      <span className="CustomCheckbox__label">{label}</span>
+      <span className={labelClasses}>{label}</span>
     </label>
   );
 }
