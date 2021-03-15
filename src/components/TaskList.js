@@ -6,8 +6,8 @@ import IconButton from './IconButton';
 import Button from './Button';
 import { themeColors } from '../utilities';
 
-function TaskList({ project, setActivePanel, updateTask }) {
-  const constructListItem = (task) => {
+function TaskList({ project, setActivePanel, updateTask, toggleComplete }) {
+  const constructListItem = (task, parentTaskId) => {
     if (task.subItems) {
       if (task.subItems.length) {
         return (
@@ -18,9 +18,12 @@ function TaskList({ project, setActivePanel, updateTask }) {
             taskId={task.id}
             projectId={project.id}
             updateTask={updateTask}
+            toggleComplete={toggleComplete}
           >
             <ul className="TaskListItem__subList">
-              {task.subItems.map(constructListItem)}
+              {task.subItems.map((subItem) =>
+                constructListItem(subItem, task.id)
+              )}
             </ul>
           </TaskListItem>
         );
@@ -33,6 +36,7 @@ function TaskList({ project, setActivePanel, updateTask }) {
           taskId={task.id}
           projectId={project.id}
           updateTask={updateTask}
+          toggleComplete={toggleComplete}
         />
       );
     }
@@ -46,6 +50,8 @@ function TaskList({ project, setActivePanel, updateTask }) {
         taskId={task.id}
         projectId={project.id}
         updateTask={updateTask}
+        toggleComplete={toggleComplete}
+        parentTaskId={parentTaskId}
       />
     );
   };

@@ -11,6 +11,8 @@ function TaskListItem({
   updateTask,
   taskId,
   projectId,
+  toggleComplete,
+  parentTaskId,
 }) {
   return (
     <li className="TaskListItem">
@@ -20,6 +22,8 @@ function TaskListItem({
         taskId={taskId}
         projectId={projectId}
         updateTask={updateTask}
+        toggleComplete={toggleComplete}
+        parentTaskId={parentTaskId}
       />
       <LineItemButtons edit remove move />
       {children}

@@ -4,8 +4,14 @@ import React from 'react';
 import useToggleState from '../hooks/useToggleState';
 import '../styles/CustomCheckbox.css';
 
-function CustomCheckbox({ label, isComplete, updateTask, taskId, projectId }) {
-  console.log('render');
+function CustomCheckbox({
+  label,
+  isComplete,
+  updateTask,
+  toggleComplete,
+  taskId,
+  parentTaskId,
+}) {
   return (
     <label className="CustomCheckbox">
       <span className="CustomCheckbox__input">
@@ -14,7 +20,7 @@ function CustomCheckbox({ label, isComplete, updateTask, taskId, projectId }) {
           name="checkbox"
           checked={isComplete}
           onChange={(e) => {
-            updateTask('isComplete', !isComplete, taskId, projectId);
+            toggleComplete(taskId, parentTaskId);
           }}
         />
         <span className="CustomCheckbox__control">

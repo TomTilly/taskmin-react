@@ -24,7 +24,7 @@ function ProjectListItem({
         <LineItemForm
           name={children}
           onSubmit={(updatedValue) => {
-            updateProject(updatedValue, id);
+            updateProject('title', updatedValue, id);
             toggle();
           }}
         />

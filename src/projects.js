@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 
-export const PROJECTS = [
+export const SEED_DATA = [
   {
     id: uuid(),
     color: 'red',
