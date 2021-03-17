@@ -43,9 +43,9 @@ function TaskListItem({
             remove={() => removeTask(taskId, parentTaskId)}
             move
           />
-          {children}
         </>
       )}
+      {children}
     </li>
   );
 }
