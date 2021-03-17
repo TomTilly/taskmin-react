@@ -6,11 +6,11 @@ import LineItemForm from './LineItemForm';
 import '../styles/TaskListItem.css';
 
 function TaskListItem({
-  isNested,
   children,
   isComplete,
   label,
   updateTask,
+  removeTask,
   taskId,
   projectId,
   toggleComplete,
@@ -38,7 +38,11 @@ function TaskListItem({
             toggleComplete={toggleComplete}
             parentTaskId={parentTaskId}
           />
-          <LineItemButtons edit={toggle} remove move />
+          <LineItemButtons
+            edit={toggle}
+            remove={() => removeTask(taskId, parentTaskId)}
+            move
+          />
           {children}
         </>
       )}

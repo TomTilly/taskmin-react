@@ -80,15 +80,42 @@ function App() {
       const parentTask = projectToEdit.tasks.find(
         (task) => parentTaskId === task.id
       );
-      const subItemToToggle = parentTask.subItems.find(
+      const subItemToUpdate = parentTask.subItems.find(
         (subItem) => taskId === subItem.id
       );
-      subItemToToggle.label = newValue;
+      subItemToUpdate.label = newValue;
     } else {
-      const taskToToggle = projectToEdit.tasks.find(
+      const taskToUpdate = projectToEdit.tasks.find(
         (task) => taskId === task.id
       );
-      taskToToggle.label = newValue;
+      taskToUpdate.label = newValue;
+    }
+
+    setProjects(newProjects);
+  };
+
+  const removeTask = (taskId, parentTaskId) => {
+    const newProjects = clonedeep(projects);
+
+    const projectToEdit = newProjects.find(
+      (project) => activeProjectId === project.id
+    );
+
+    // If parentTaskId is present, task is a sub item
+    if (parentTaskId) {
+      const parentTask = projectToEdit.tasks.find(
+        (task) => parentTaskId === task.id
+      );
+      const subItemIndex = parentTask.subItems.findIndex(
+        (subItem) => taskId === subItem.id
+      );
+
+      parentTask.subItems.splice(subItemIndex, 1);
+    } else {
+      const taskIndex = projectToEdit.tasks.findIndex(
+        (task) => taskId === task.id
+      );
+      projectToEdit.tasks.splice(taskIndex, 1);
     }
 
     setProjects(newProjects);
@@ -109,6 +136,7 @@ function App() {
         project={projects.find((p) => p.id === activeProjectId)}
         setActivePanel={setActivePanel}
         updateTask={updateTask}
+        removeTask={removeTask}
         toggleComplete={toggleComplete}
       />
     </main>
