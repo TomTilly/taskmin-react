@@ -69,13 +69,28 @@ function App() {
     setProjects(newProjects);
   };
 
-  const updateTask = (propToUpdate, newValue, taskId) => {
+  const updateTask = (newValue, taskId, parentTaskId) => {
     const newProjects = clonedeep(projects);
     const projectToEdit = newProjects.find(
       (project) => activeProjectId === project.id
     );
-    const taskToEdit = projectToEdit.tasks.find((task) => taskId === task.id);
-    taskToEdit[propToUpdate] = newValue;
+
+    // If parentTaskId is present, task is a sub item
+    if (parentTaskId) {
+      const parentTask = projectToEdit.tasks.find(
+        (task) => parentTaskId === task.id
+      );
+      const subItemToToggle = parentTask.subItems.find(
+        (subItem) => taskId === subItem.id
+      );
+      subItemToToggle.label = newValue;
+    } else {
+      const taskToToggle = projectToEdit.tasks.find(
+        (task) => taskId === task.id
+      );
+      taskToToggle.label = newValue;
+    }
+
     setProjects(newProjects);
   };
 
