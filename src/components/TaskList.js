@@ -66,7 +66,10 @@ function TaskList({
   };
 
   const header = (
-    <header className="TaskList__header">
+    <header
+      className="TaskList__header"
+      style={{ borderBottomColor: themeColors[project.color] }}
+    >
       <Button
         className="TaskList__button"
         onClick={(e) => {
