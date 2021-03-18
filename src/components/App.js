@@ -3,7 +3,7 @@ import clonedeep from 'lodash/cloneDeep';
 import ProjectsSidebar from './ProjectsSidebar';
 import TaskList from './TaskList';
 import '../styles/App.css';
-import { SEED_DATA } from '../projects';
+import { SEED_DATA, createNewTask } from '../projects';
 
 function App() {
   const [projects, setProjects] = useState(SEED_DATA);
@@ -121,6 +121,39 @@ function App() {
     setProjects(newProjects);
   };
 
+  const addTask = (parentTaskId) => {
+    let newProjects;
+    // Add sub item
+    if (parentTaskId) {
+      newProjects = clonedeep(projects);
+      // Find right project
+      const projectToEdit = newProjects.find(
+        (project) => project.id === activeProjectId
+      );
+      // Find right task
+      const taskToEdit = projectToEdit.tasks.find(
+        (task) => task.id === parentTaskId
+      );
+      // Add task to end of subItems of task
+      taskToEdit.subItems.push(createNewTask('', true));
+
+      // Add top level task
+      // id: uuid(),
+      //     label: 'Choose repertoire',
+      //     isComplete: false,
+      //     subItems: [
+    } else {
+      newProjects = projects.map((project) => {
+        if (project.id === activeProjectId) {
+          return { ...project, tasks: [createNewTask(''), ...project.tasks] };
+        }
+        return project;
+      });
+    }
+
+    setProjects(newProjects);
+  };
+
   return (
     <main className="App">
       <ProjectsSidebar
@@ -138,6 +171,7 @@ function App() {
         updateTask={updateTask}
         removeTask={removeTask}
         toggleComplete={toggleComplete}
+        addTask={addTask}
       />
     </main>
   );

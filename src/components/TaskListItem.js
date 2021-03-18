@@ -15,15 +15,19 @@ function TaskListItem({
   projectId,
   toggleComplete,
   parentTaskId,
+  isNewTask,
 }) {
-  const [isEditing, toggle] = useToggleState(false);
+  const [isEditing, toggle] = useToggleState(label === '');
   return (
     <li className="TaskListItem">
       {isEditing ? (
         <LineItemForm
           name={label}
+          placeholder="Enter your task name..."
           onSubmit={(updatedValue) => {
-            updateTask(updatedValue, taskId, parentTaskId);
+            if (updatedValue !== '') {
+              updateTask(updatedValue, taskId, parentTaskId);
+            }
             toggle();
           }}
         />

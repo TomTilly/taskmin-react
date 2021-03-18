@@ -24,8 +24,11 @@ function ProjectListItem({
       {isEditing ? (
         <LineItemForm
           name={children}
+          placeholder="Enter your project name..."
           onSubmit={(updatedValue) => {
-            updateProject('title', updatedValue, id);
+            if (updatedValue !== '') {
+              updateProject('title', updatedValue, id);
+            }
             toggle();
           }}
         />

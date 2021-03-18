@@ -12,6 +12,7 @@ function TaskList({
   updateTask,
   removeTask,
   toggleComplete,
+  addTask,
 }) {
   const constructListItem = (task, parentTaskId) => {
     if (task.subItems) {
@@ -68,7 +69,9 @@ function TaskList({
   const header = (
     <header
       className="TaskList__header"
-      style={{ borderBottomColor: themeColors[project.color] }}
+      style={{
+        borderBottomColor: project ? themeColors[project.color] : '#666',
+      }}
     >
       <Button
         className="TaskList__button"
@@ -88,6 +91,7 @@ function TaskList({
           color={themeColors.green}
           background="#dddddd"
           size="lg"
+          handleClick={(e) => addTask()}
         >
           <Plus />
         </IconButton>
@@ -99,7 +103,16 @@ function TaskList({
     <section className="TaskList">
       {header}
       {project && (
-        <ul className="TaskList__ul">{project.tasks.map(constructListItem)}</ul>
+        <ul className="TaskList__ul">
+          {project.tasks.length ? (
+            project.tasks.map(constructListItem)
+          ) : (
+            <p className="TaskList__empty-notification">
+              This project doesn't currently have any tasks. Click the plus
+              button above to create one!
+            </p>
+          )}
+        </ul>
       )}
     </section>
   );

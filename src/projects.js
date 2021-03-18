@@ -219,3 +219,17 @@ export const SEED_DATA = [
     ],
   },
 ];
+
+export function createNewTask(label = '', isSubItem = false) {
+  const newTask = {
+    label,
+    id: uuid(),
+    isComplete: false,
+  };
+
+  if (!isSubItem) {
+    newTask.subItems = [];
+  }
+
+  return newTask;
+}

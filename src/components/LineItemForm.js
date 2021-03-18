@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ReactComponent as Checkmark } from 'bootstrap-icons/icons/check2.svg';
 import { ReactComponent as X } from 'bootstrap-icons/icons/x.svg';
 import useInputState from '../hooks/useInputState';
@@ -6,8 +6,16 @@ import IconButton from './IconButton';
 import { themeColors } from '../utilities';
 import '../styles/LineItemForm.css';
 
-function LineItemForm({ name, onSubmit }) {
+function LineItemForm({
+  name,
+  placeholder = 'Enter your item name...',
+  onSubmit,
+}) {
   const [value, setValue] = useInputState(name);
+  const textInput = useRef(null);
+  useEffect(() => {
+    textInput.current.focus();
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(value);
@@ -20,7 +28,8 @@ function LineItemForm({ name, onSubmit }) {
         type="text"
         value={value}
         onChange={setValue}
-        placeholder="Enter your project name..."
+        placeholder={placeholder}
+        ref={textInput}
       />
       <IconButton
         color="white"
