@@ -1,4 +1,5 @@
 import { v4 as uuid } from 'uuid';
+import { generateRandomColor } from './utilities';
 
 export const SEED_DATA = [
   {
@@ -219,6 +220,15 @@ export const SEED_DATA = [
     ],
   },
 ];
+
+export function createNewProject(title) {
+  return {
+    title,
+    id: uuid(),
+    color: generateRandomColor(),
+    tasks: [],
+  };
+}
 
 export function createNewTask(label = '', isSubItem = false) {
   const newTask = {
