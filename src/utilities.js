@@ -27,12 +27,15 @@ function lightenDarkenColor(col, amt) {
   return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16);
 }
 
-export { lightenDarkenColor };
-
 /* Get theme color hex values from CSS variables */
 const themeColorNames = ['green', 'red', 'yellow', 'blue', 'orange'];
 
 const documentStyles = getComputedStyle(document.documentElement);
+
+function generateRandomColor(colors = themeColorNames) {
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
+}
 
 const themeColors = themeColorNames.reduce((allColors, nextColor) => {
   const hex = documentStyles.getPropertyValue(`--${nextColor}`);
@@ -42,4 +45,4 @@ const themeColors = themeColorNames.reduce((allColors, nextColor) => {
   return allColors;
 }, {});
 
-export { themeColors };
+export { themeColors, generateRandomColor, lightenDarkenColor };
