@@ -15,7 +15,6 @@ function TaskListItem({
   projectId,
   toggleComplete,
   parentTaskId,
-  isNewTask,
 }) {
   const [isEditing, toggle] = useToggleState(label === '');
   return (

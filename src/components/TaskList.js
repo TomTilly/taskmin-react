@@ -91,7 +91,7 @@ function TaskList({
           color={themeColors.green}
           background="#dddddd"
           size="lg"
-          handleClick={(e) => addTask()}
+          handleClick={() => addTask()}
         >
           <Plus />
         </IconButton>

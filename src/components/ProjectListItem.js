@@ -14,7 +14,7 @@ function ProjectListItem({
   updateProject,
   removeProject,
 }) {
-  const [isEditing, toggle] = useToggleState(false);
+  const [isEditing, toggle] = useToggleState(children === '');
   let buttonClasses = 'ProjectListItem__button';
   if (isActive) {
     buttonClasses += ' ProjectListItem__button--active';

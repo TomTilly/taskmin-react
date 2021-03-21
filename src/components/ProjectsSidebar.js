@@ -11,6 +11,7 @@ function ProjectsSidebar({
   setActiveProjectId,
   activePanel,
   setActivePanel,
+  addProject,
   updateProject,
   removeProject,
 }) {
@@ -27,6 +28,7 @@ function ProjectsSidebar({
           color={themeColors.green}
           background="#dddddd"
           size="lg"
+          handleClick={addProject}
         >
           <Plus />
         </IconButton>

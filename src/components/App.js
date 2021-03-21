@@ -3,7 +3,7 @@ import clonedeep from 'lodash/cloneDeep';
 import ProjectsSidebar from './ProjectsSidebar';
 import TaskList from './TaskList';
 import '../styles/App.css';
-import { SEED_DATA, createNewTask } from '../projects';
+import { SEED_DATA, createNewTask, createNewProject } from '../projects';
 
 function App() {
   const [projects, setProjects] = useState(SEED_DATA);
@@ -17,6 +17,14 @@ function App() {
       }
       return project;
     });
+
+    setProjects(newProjects);
+  };
+
+  const addProject = () => {
+    const newProjects = clonedeep(projects);
+
+    newProjects.unshift(createNewProject(''));
 
     setProjects(newProjects);
   };
@@ -136,12 +144,6 @@ function App() {
       );
       // Add task to end of subItems of task
       taskToEdit.subItems.push(createNewTask('', true));
-
-      // Add top level task
-      // id: uuid(),
-      //     label: 'Choose repertoire',
-      //     isComplete: false,
-      //     subItems: [
     } else {
       newProjects = projects.map((project) => {
         if (project.id === activeProjectId) {
@@ -162,6 +164,7 @@ function App() {
         setActiveProjectId={setActiveProjectId}
         activePanel={activePanel}
         setActivePanel={setActivePanel}
+        addProject={addProject}
         updateProject={updateProject}
         removeProject={removeProject}
       />
