@@ -1,4 +1,4 @@
-.ProjectListItem__button {
+.Project__button {
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-gap: 0.75em;
@@ -12,40 +12,40 @@
   background: none;
 }
 
-.ProjectListItem__button:focus {
+.Project__button:focus {
   outline: none;
 }
 
-.ProjectListItem__button:hover,
-.ProjectListItem__button:focus {
+.Project__button:hover,
+.Project__button:focus {
   background-color: #dad9e2;
 }
 
-.ProjectListItem__button--active,
-.ProjectListItem__button--active:hover,
-.ProjectListItem__button--active:focus {
+.Project__button--active,
+.Project__button--active:hover,
+.Project__button--active:focus {
   background-color: #cfced8;
 }
 
-.ProjectListItem__button::before {
+.Project__button::before {
   content: '';
   width: 0.8em;
   height: 0.8em;
   border-radius: 50%;
 }
 
-.ProjectListItem__button[data-color='red']::before {
+.Project__button[data-color='red']::before {
   background-color: var(--red);
 }
-.ProjectListItem__button[data-color='yellow']::before {
+.Project__button[data-color='yellow']::before {
   background-color: var(--yellow);
 }
-.ProjectListItem__button[data-color='green']::before {
+.Project__button[data-color='green']::before {
   background-color: var(--green);
 }
-.ProjectListItem__button[data-color='blue']::before {
+.Project__button[data-color='blue']::before {
   background-color: var(--blue);
 }
-.ProjectListItem__button[data-color='orange']::before {
+.Project__button[data-color='orange']::before {
   background-color: var(--orange);
 }

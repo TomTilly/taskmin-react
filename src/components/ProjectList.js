@@ -1,11 +1,11 @@
 import React from 'react';
 import { ReactComponent as Plus } from 'bootstrap-icons/icons/plus.svg';
-import ProjectListItem from './ProjectListItem';
+import Project from './Project';
 import IconButton from './IconButton';
 import { themeColors } from '../utilities';
-import '../styles/ProjectsSidebar.css';
+import '../styles/ProjectList.css';
 
-function ProjectsSidebar({
+function ProjectList({
   projects,
   activeProject,
   setActiveProjectId,
@@ -15,14 +15,15 @@ function ProjectsSidebar({
   updateProject,
   removeProject,
 }) {
-  let classes = 'ProjectsSidebar';
+  let classes = 'ProjectList';
   if (activePanel === 'projects') {
-    classes += ' ProjectsSidebar--active';
+    classes += ' ProjectList--active';
   }
+
   return (
     <section className={classes}>
-      <header className="ProjectsSidebar__header">
-        <h2 className="ProjectsSidebar__title">My Projects</h2>
+      <header className="ProjectList__header">
+        <h2 className="ProjectList__title">My Projects</h2>
         <IconButton
           ariaLabel="Add Task to List"
           color={themeColors.green}
@@ -34,9 +35,9 @@ function ProjectsSidebar({
         </IconButton>
       </header>
       {projects.length ? (
-        <ul className="ProjectsSidebar__project-list">
+        <ul className="ProjectList__list">
           {projects.map((project) => (
-            <ProjectListItem
+            <Project
               key={project.id}
               id={project.id}
               color={project.color}
@@ -47,11 +48,11 @@ function ProjectsSidebar({
               removeProject={removeProject}
             >
               {project.title}
-            </ProjectListItem>
+            </Project>
           ))}
         </ul>
       ) : (
-        <p className="ProjectsSidebar__empty-notification">
+        <p className="ProjectList__empty-notification">
           No projects to show. Click on the "plus" icon above to create one!
         </p>
       )}
@@ -59,4 +60,4 @@ function ProjectsSidebar({
   );
 }
 
-export default ProjectsSidebar;
+export default ProjectList;

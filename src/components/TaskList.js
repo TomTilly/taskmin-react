@@ -7,6 +7,8 @@ import Button from './Button';
 import { themeColors } from '../utilities';
 
 function TaskList({
+  tasks,
+  subtasks,
   project,
   setActivePanel,
   updateTask,
@@ -14,24 +16,21 @@ function TaskList({
   toggleComplete,
   addTask,
 }) {
-  const constructListItem = (task, parentTaskId) => {
-    if (task.subItems) {
-      if (task.subItems.length) {
+  const constructListItem = (task) => {
+    if (task.subtaskIds) {
+      if (task.subtaskIds.length) {
         return (
           <TaskListItem
             isComplete={task.isComplete}
             key={task.id}
-            label={task.label}
-            taskId={task.id}
-            projectId={project.id}
+            label={task.content}
+            id={task.id}
             updateTask={updateTask}
             removeTask={removeTask}
             toggleComplete={toggleComplete}
           >
             <ul className="TaskListItem__subList">
-              {task.subItems.map((subItem) =>
-                constructListItem(subItem, task.id)
-              )}
+              {task.subtaskIds.map((id) => constructListItem(subtasks[id]))}
             </ul>
           </TaskListItem>
         );
@@ -40,28 +39,24 @@ function TaskList({
         <TaskListItem
           isComplete={task.isComplete}
           key={task.id}
-          label={task.label}
-          taskId={task.id}
-          projectId={project.id}
+          label={task.content}
+          id={task.id}
           updateTask={updateTask}
           removeTask={removeTask}
           toggleComplete={toggleComplete}
         />
       );
     }
-    // Subitems
     return (
       <TaskListItem
-        isNested
         isComplete={task.isComplete}
         key={task.id}
-        label={task.label}
-        taskId={task.id}
-        projectId={project.id}
+        label={task.content}
+        id={task.id}
         updateTask={updateTask}
         removeTask={removeTask}
         toggleComplete={toggleComplete}
-        parentTaskId={parentTaskId}
+        isNested
       />
     );
   };
@@ -70,7 +65,7 @@ function TaskList({
     <header
       className="TaskList__header"
       style={{
-        borderBottomColor: project ? themeColors[project.color] : '#666',
+        borderBottomColor: project ? themeColors[project.color] : '#ddd',
       }}
     >
       <Button
@@ -85,27 +80,25 @@ function TaskList({
       <h1 className="TaskList__title">
         {project ? project.title : 'No project selected'}
       </h1>
-      {project && (
-        <IconButton
-          ariaLabel="Add Task to List"
-          color={themeColors.green}
-          background="#dddddd"
-          size="lg"
-          handleClick={() => addTask()}
-        >
-          <Plus />
-        </IconButton>
-      )}
+      <IconButton
+        ariaLabel="Add Task to List"
+        color={themeColors.green}
+        background="#dddddd"
+        size="lg"
+        handleClick={() => addTask()}
+      >
+        <Plus />
+      </IconButton>
     </header>
   );
 
   return (
     <section className="TaskList">
       {header}
-      {project && (
+      {tasks && (
         <ul className="TaskList__ul">
-          {project.tasks.length ? (
-            project.tasks.map(constructListItem)
+          {tasks.length ? (
+            tasks.map(constructListItem)
           ) : (
             <p className="TaskList__empty-notification">
               This project doesn't currently have any tasks. Click the plus

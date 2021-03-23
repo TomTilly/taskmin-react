@@ -11,10 +11,9 @@ function TaskListItem({
   label,
   updateTask,
   removeTask,
-  taskId,
-  projectId,
+  id,
   toggleComplete,
-  parentTaskId,
+  isNested,
 }) {
   const [isEditing, toggle] = useToggleState(label === '');
   return (
@@ -25,7 +24,7 @@ function TaskListItem({
           placeholder="Enter your task name..."
           onSubmit={(updatedValue) => {
             if (updatedValue !== '') {
-              updateTask(updatedValue, taskId, parentTaskId);
+              updateTask('content', updatedValue, id);
             }
             toggle();
           }}
@@ -35,17 +34,10 @@ function TaskListItem({
           <CustomCheckbox
             label={label}
             isComplete={isComplete}
-            taskId={taskId}
-            projectId={projectId}
-            updateTask={updateTask}
-            toggleComplete={toggleComplete}
-            parentTaskId={parentTaskId}
+            id={id}
+            toggleComplete={() => toggleComplete(id, isNested)}
           />
-          <LineItemButtons
-            edit={toggle}
-            remove={() => removeTask(taskId, parentTaskId)}
-            move
-          />
+          <LineItemButtons edit={toggle} remove={() => removeTask(id)} move />
         </>
       )}
       {children}

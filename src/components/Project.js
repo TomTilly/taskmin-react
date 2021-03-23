@@ -2,9 +2,9 @@ import React from 'react';
 import useToggleState from '../hooks/useToggleState';
 import LineItemButtons from './LineItemButtons';
 import LineItemForm from './LineItemForm';
-import '../styles/ProjectListItem.css';
+import '../styles/Project.css';
 
-function ProjectListItem({
+function Project({
   color,
   isActive,
   id,
@@ -15,12 +15,12 @@ function ProjectListItem({
   removeProject,
 }) {
   const [isEditing, toggle] = useToggleState(children === '');
-  let buttonClasses = 'ProjectListItem__button';
+  let buttonClasses = 'Project__button';
   if (isActive) {
-    buttonClasses += ' ProjectListItem__button--active';
+    buttonClasses += ' Project__button--active';
   }
   return (
-    <li className="ProjectListItem">
+    <li className="Project">
       {isEditing ? (
         <LineItemForm
           name={children}
@@ -55,4 +55,4 @@ function ProjectListItem({
   );
 }
 
-export default ProjectListItem;
+export default Project;

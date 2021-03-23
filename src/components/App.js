@@ -1,32 +1,32 @@
 import React, { useState } from 'react';
 import clonedeep from 'lodash/cloneDeep';
-import ProjectsSidebar from './ProjectsSidebar';
+import ProjectList from './ProjectList';
 import TaskList from './TaskList';
 import '../styles/App.css';
-import { SEED_DATA, createNewTask, createNewProject } from '../projects';
+import { SEED_DATA, createNewTask, createNewProject } from '../seed';
 
 function App() {
-  const [projects, setProjects] = useState(SEED_DATA);
-  const [activeProjectId, setActiveProjectId] = useState(projects[0]?.id);
+  const [projects, setProjects] = useState(SEED_DATA.projects);
+  const [tasks, setTasks] = useState(SEED_DATA.tasks);
+  const [subtasks, setSubtasks] = useState(SEED_DATA.subtasks);
+  const [projectOrder, setProjectOrder] = useState(SEED_DATA.projectOrder);
+  const [activeProjectId, setActiveProjectId] = useState('project-1');
   const [activePanel, setActivePanel] = useState('projects');
+  const tasksToShow = projects[activeProjectId].taskIds.map(
+    (taskId) => tasks[taskId]
+  );
+  const activeProject = projects[activeProjectId];
 
   const updateProject = (propToUpdate, newValue, id) => {
-    const newProjects = projects.map((project) => {
-      if (project.id === id) {
-        return { ...project, [propToUpdate]: newValue };
-      }
-      return project;
-    });
-
+    const newProjects = { ...projects };
+    newProjects[id][propToUpdate] = newValue;
     setProjects(newProjects);
   };
 
   const addProject = () => {
-    const newProjects = clonedeep(projects);
-
-    newProjects.unshift(createNewProject(''));
-
-    setProjects(newProjects);
+    const newProject = createNewProject('');
+    const { id } = newProject;
+    setProjects({ ...projects, [id]: newProject });
   };
 
   const removeProject = (id) => {
@@ -35,98 +35,63 @@ function App() {
     setProjects(newProjects);
   };
 
-  const toggleComplete = (taskId, parentTaskId) => {
-    const newProjects = clonedeep(projects);
-    const projectToEdit = newProjects.find(
-      (project) => activeProjectId === project.id
-    );
+  const toggleComplete = (id, isSubtask = false) => {
+    if (!isSubtask) {
+      const newTasks = { ...tasks };
+      const taskToUpdate = newTasks[id];
+      taskToUpdate.isComplete = !taskToUpdate.isComplete;
+      setTasks(newTasks);
 
-    // If parentTaskId is present, task is a sub item
-    if (parentTaskId) {
-      const parentTask = projectToEdit.tasks.find(
-        (task) => parentTaskId === task.id
-      );
-      const subItemToToggle = parentTask.subItems.find(
-        (subItem) => taskId === subItem.id
-      );
-      subItemToToggle.isComplete = !subItemToToggle.isComplete;
-
-      /* If sub item toggled to true, check if all sub items are checked.
-       * If so, set parent task isComplete to true
-       */
-      if (parentTask.subItems.every((subItem) => subItem.isComplete)) {
-        parentTask.isComplete = true;
+      // If task has subtasks, set all subtask isComplete properties to be equal to the task's isComplete
+      if (taskToUpdate.subtaskIds && taskToUpdate.subtaskIds.length > 0) {
+        const newSubtasks = { ...subtasks };
+        for (const key of Object.keys(newSubtasks)) {
+          newSubtasks[key].isComplete = taskToUpdate.isComplete;
+        }
+        setSubtasks(newSubtasks);
       }
-
-      // If sub item toggled to false, also set isComplete of parent to false
-      if (!subItemToToggle.isComplete) {
-        parentTask.isComplete = false;
-      }
-
-      // If parentTaskId is absent, task is not a sub item
     } else {
-      const taskToToggle = projectToEdit.tasks.find(
-        (task) => taskId === task.id
-      );
-      taskToToggle.isComplete = !taskToToggle.isComplete;
-      taskToToggle.subItems.forEach((subItem) => {
-        subItem.isComplete = taskToToggle.isComplete;
-      });
-    }
+      const newSubtasks = { ...subtasks };
+      const subtaskToUpdate = newSubtasks[id];
+      const parentTask = tasks[subtaskToUpdate.parentId];
 
-    setProjects(newProjects);
+      newSubtasks[id].isComplete = !newSubtasks[id].isComplete;
+      setSubtasks(newSubtasks);
+
+      // If subtask is marked incomplete, make sure parent task is also marked incomplete if it isn't already
+      if (!newSubtasks[id].isComplete) {
+        if (parentTask.isComplete) {
+          const newTasks = { ...tasks };
+          const taskToUpdate = newTasks[subtaskToUpdate.parentId];
+          taskToUpdate.isComplete = false;
+          setTasks(newTasks);
+        }
+        // If subtask is marked complete, check to see if every subtask is complete. If so, mark parent as complete
+      } else if (
+        parentTask.subtaskIds.every(
+          (subtaskId) => newSubtasks[subtaskId].isComplete
+        )
+      ) {
+        const newTasks = { ...tasks };
+        const taskToUpdate = newTasks[subtaskToUpdate.parentId];
+        taskToUpdate.isComplete = true;
+        setTasks(newTasks);
+      }
+    }
   };
 
-  const updateTask = (newValue, taskId, parentTaskId) => {
-    const newProjects = clonedeep(projects);
-    const projectToEdit = newProjects.find(
-      (project) => activeProjectId === project.id
-    );
+  const updateTask = (propToUpdate, newValue, id) => {
+    const newTasks = { ...tasks };
+    newTasks[id][propToUpdate] = newValue;
 
-    // If parentTaskId is present, task is a sub item
-    if (parentTaskId) {
-      const parentTask = projectToEdit.tasks.find(
-        (task) => parentTaskId === task.id
-      );
-      const subItemToUpdate = parentTask.subItems.find(
-        (subItem) => taskId === subItem.id
-      );
-      subItemToUpdate.label = newValue;
-    } else {
-      const taskToUpdate = projectToEdit.tasks.find(
-        (task) => taskId === task.id
-      );
-      taskToUpdate.label = newValue;
-    }
-
-    setProjects(newProjects);
+    setTasks(newTasks);
   };
 
-  const removeTask = (taskId, parentTaskId) => {
-    const newProjects = clonedeep(projects);
+  const removeTask = (id) => {
+    const newTasks = { ...tasks };
+    delete newTasks[id];
 
-    const projectToEdit = newProjects.find(
-      (project) => activeProjectId === project.id
-    );
-
-    // If parentTaskId is present, task is a sub item
-    if (parentTaskId) {
-      const parentTask = projectToEdit.tasks.find(
-        (task) => parentTaskId === task.id
-      );
-      const subItemIndex = parentTask.subItems.findIndex(
-        (subItem) => taskId === subItem.id
-      );
-
-      parentTask.subItems.splice(subItemIndex, 1);
-    } else {
-      const taskIndex = projectToEdit.tasks.findIndex(
-        (task) => taskId === task.id
-      );
-      projectToEdit.tasks.splice(taskIndex, 1);
-    }
-
-    setProjects(newProjects);
+    setTasks(newTasks);
   };
 
   const addTask = (parentTaskId) => {
@@ -158,8 +123,8 @@ function App() {
 
   return (
     <main className="App">
-      <ProjectsSidebar
-        projects={projects}
+      <ProjectList
+        projects={Object.values(projects)}
         activeProject={activeProjectId}
         setActiveProjectId={setActiveProjectId}
         activePanel={activePanel}
@@ -169,7 +134,9 @@ function App() {
         removeProject={removeProject}
       />
       <TaskList
-        project={projects.find((p) => p.id === activeProjectId)}
+        tasks={tasksToShow}
+        subtasks={subtasks}
+        project={activeProject}
         setActivePanel={setActivePanel}
         updateTask={updateTask}
         removeTask={removeTask}
