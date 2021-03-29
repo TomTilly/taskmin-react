@@ -12,7 +12,7 @@ function App() {
   const [projectOrder, setProjectOrder] = useState(SEED_DATA.projectOrder);
   const [activeProjectId, setActiveProjectId] = useState('project-1');
   const [activePanel, setActivePanel] = useState('projects');
-  const tasksToShow = projects[activeProjectId].taskIds.map(
+  const tasksToShow = projects[activeProjectId]?.taskIds.map(
     (taskId) => tasks[taskId]
   );
   const activeProject = projects[activeProjectId];
@@ -30,7 +30,8 @@ function App() {
   };
 
   const removeProject = (id) => {
-    const newProjects = projects.filter((project) => project.id !== id);
+    const newProjects = { ...projects };
+    delete newProjects[id];
     setActiveProjectId(null);
     setProjects(newProjects);
   };
