@@ -37,7 +37,11 @@ function TaskListItem({
             id={id}
             toggleComplete={() => toggleComplete(id, isNested)}
           />
-          <LineItemButtons edit={toggle} remove={() => removeTask(id)} move />
+          <LineItemButtons
+            edit={toggle}
+            remove={() => removeTask(id, isNested)}
+            move
+          />
         </>
       )}
       {children}

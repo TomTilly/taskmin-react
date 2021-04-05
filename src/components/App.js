@@ -88,11 +88,38 @@ function App() {
     setTasks(newTasks);
   };
 
-  const removeTask = (id) => {
-    const newTasks = { ...tasks };
-    delete newTasks[id];
+  const removeTask = (id, isSubtask = false) => {
+    if (!isSubtask) {
+      const newTasks = { ...tasks };
+      const { projectId } = newTasks[id];
+      const newTaskIds = projects[projectId].taskIds.filter(
+        (taskId) => taskId !== id
+      );
+      const newProjects = {
+        ...projects,
+        [projectId]: { ...projects[projectId], taskIds: newTaskIds },
+      };
+      delete newTasks[id];
+      setTasks(newTasks);
+      setProjects(newProjects);
+    } else {
+      const newSubtasks = { ...subtasks };
+      const { parentId: taskId } = newSubtasks[id];
+      const newSubtaskIds = tasks[taskId].subtaskIds.filter(
+        (subtaskId) => subtaskId !== id
+      );
+      const newTasks = {
+        ...tasks,
+        [taskId]: { ...tasks[taskId], subtaskIds: newSubtaskIds },
+      };
+      delete subtasks[id];
+      setTasks(newTasks);
+      setSubtasks(newSubtasks);
+    }
+  };
 
-    setTasks(newTasks);
+  const removeSubtask = (id) => {
+    const newSubtasks = { ...subtasks };
   };
 
   const addTask = (parentTaskId) => {

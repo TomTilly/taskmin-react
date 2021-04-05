@@ -17,7 +17,7 @@ function TaskList({
   addTask,
 }) {
   const constructListItem = (task) => {
-    if (task.subtaskIds) {
+    if (task?.subtaskIds) {
       if (task.subtaskIds.length) {
         return (
           <TaskListItem
